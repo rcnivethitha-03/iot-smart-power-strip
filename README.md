@@ -1,195 +1,187 @@
-# IoT Smart Power Strip with Energy Monitoring using ESP32
+# ⚡ IoT Smart Power Strip
 
-An IoT-based Smart Power Strip developed using ESP32 microcontrollers for real-time electrical parameter monitoring and intelligent relay control. The system monitors voltage, current, power, energy consumption, frequency, and power factor using dual PZEM-004T energy meters and supports cloud-ready architecture for remote monitoring.
-
----
-
-# Project Overview
-
-The project consists of two ESP32 boards:
-
-- **Sensor Node** – Collects electrical parameters from two PZEM-004T energy monitoring modules.
-- **Edge Node** – Receives sensor data over Wi-Fi, processes it, controls relays for voltage protection, and provides support for cloud platforms such as Firebase and Blynk.
-
-The objective of this project is to improve electrical safety, monitor energy consumption, and provide a scalable IoT-based smart power management system.
+An ESP32-based IoT Smart Power Strip that provides **real-time energy monitoring**, **remote appliance control**, **relay-based protection**, and **cloud-ready architecture** using dual PZEM-004T energy meters.
 
 ---
 
-# Features
+## 📌 Overview
 
-- Real-time Voltage Monitoring
-- Real-time Current Monitoring
-- Power Monitoring
-- Energy Consumption Monitoring
-- Frequency Measurement
-- Power Factor Monitoring
-- Dual Load Monitoring
-- Wi-Fi Communication
-- JSON Data Transmission
-- ESP32-based Distributed Architecture
-- Automatic Under Voltage Protection
-- Automatic Over Voltage Protection
-- Relay Control
-- Cloud-ready Architecture
-- Firebase Integration (Reconstructed)
-- Blynk Dashboard Support (Reconstructed)
+This project was developed to create a smart power strip capable of monitoring electrical parameters while allowing users to remotely control connected appliances.
+
+The system uses two ESP32 boards:
+
+- **Sensor Node** – Reads electrical parameters from dual PZEM-004T sensors.
+- **Edge Node** – Receives data over Wi-Fi, processes it, and controls relay outputs.
+
+The architecture is designed to be scalable and can easily integrate with cloud platforms such as MQTT, Blynk, or Node-RED.
 
 ---
 
-# Hardware Components
+## ✨ Features
 
-- ESP32 Development Board ×2
-- PZEM-004T V3 Energy Meter ×2
-- 2-Channel Relay Module
-- AC Loads
-- Wi-Fi Router
-- Power Supply
+- 🔌 Remote appliance ON/OFF control
+- ⚡ Real-time Voltage monitoring
+- 🔋 Current measurement
+- 📈 Active Power calculation
+- 💡 Energy consumption tracking
+- 📊 Frequency monitoring
+- 🔄 Wi-Fi communication between ESP32 nodes
+- 🛡 Relay-based load control
+- ☁ Cloud-ready architecture for IoT expansion
 
 ---
 
-# Software & Libraries
+# 🏗 System Architecture
+
+```
+          +----------------------+
+          |   Sensor Node ESP32  |
+          |----------------------|
+          |  PZEM-004T #1        |
+          |  PZEM-004T #2        |
+          +----------+-----------+
+                     |
+               Wi-Fi Communication
+                     |
+                     ▼
+          +----------------------+
+          |    Edge Node ESP32   |
+          |----------------------|
+          | Receives Sensor Data |
+          | Controls Relays       |
+          | Processes Readings    |
+          +----------+-----------+
+                     |
+                Smart Power Strip
+```
+
+---
+
+## 🛠 Hardware Used
+
+| Component | Quantity |
+|-----------|----------|
+| ESP32 Dev Board | 2 |
+| PZEM-004T Energy Meter | 2 |
+| Relay Module | 1 |
+| AC Loads | Multiple |
+| Power Supply | 5V |
+| Jumper Wires | As required |
+
+---
+
+## 💻 Software Used
 
 - Arduino IDE
 - ESP32 Board Package
-- ArduinoJson
-- PZEM004Tv30 Library
 - WiFi Library
-- HTTPClient Library
-- WebServer Library
+- PZEM004Tv30 Library
 
 ---
 
-# System Architecture
+## 📂 Repository Structure
 
 ```
-            +-----------------------+
-            |     PZEM-004T #1      |
-            +----------+------------+
-                       |
-                       |
-            +----------v------------+
-            |                       |
-            |   Sensor Node ESP32   |
-            |                       |
-            +----------+------------+
-                       |
-                 HTTP + JSON
-                       |
-                       |
-            +----------v------------+
-            |                       |
-            |    Edge Node ESP32    |
-            |                       |
-            +-----+-----------+-----+
-                  |           |
-             Relay Control    |
-                              |
-                      Firebase / Blynk
+├── Edge_Node.ino          # Edge node firmware
+├── Sensor_Node.ino        # Sensor node firmware
+├── config.ino             # Wi-Fi & configuration
+├── hardware_setup.png     # Hardware connection
+├── IoT_Smart_Power_Strip_Report.pdf
+└── README.md
 ```
 
 ---
 
-# Project Workflow
+## ⚙ Working Principle
 
-1. Sensor Node reads electrical parameters from two PZEM-004T modules.
-2. Sensor data is converted into JSON format.
-3. JSON data is transmitted to the Edge Node over Wi-Fi.
-4. Edge Node receives and processes the data.
-5. Relay control protects connected loads from abnormal voltage.
-6. Sensor readings can be uploaded to Firebase.
-7. Live monitoring can be performed using the Blynk mobile application.
+1. Sensor Node reads electrical parameters from both PZEM modules.
+2. Data is transmitted wirelessly to the Edge Node.
+3. Edge Node receives and processes the measurements.
+4. Relay outputs are controlled based on commands.
+5. The system can be extended to publish data to cloud dashboards.
 
 ---
 
-# Repository Structure
+## 📷 Hardware Setup
 
-```
-iot-smart-power-strip
-│
-├── Sensor_Node.ino
-├── Edge_Node.ino
-├── config.h
-├── README.md
-├── Project_Report.pdf
-└── images/
-```
+> Replace the image below with your hardware photograph.
+
+![Hardware Setup](hardware_setup.png)
 
 ---
 
-# Images
+## 🚀 Getting Started
 
-## Hardware Setup
+### Clone Repository
 
-(Add your hardware image here)
-
-```
-images/hardware_setup.jpg
+```bash
+git clone https://github.com/rcnivethitha-03/iot-smart-power-strip.git
 ```
 
 ---
 
-## Circuit Diagram
+### Open in Arduino IDE
 
-(Add your circuit diagram here)
+Upload:
+
+- `Sensor_Node.ino` → Sensor ESP32
+- `Edge_Node.ino` → Edge ESP32
+
+Update the Wi-Fi credentials inside
+
+```cpp
+const char* ssid = "YOUR_WIFI";
+const char* password = "YOUR_PASSWORD";
+```
+
+Then upload the code to both ESP32 boards.
+
+---
+
+## 📊 Parameters Monitored
+
+- Voltage (V)
+- Current (A)
+- Power (W)
+- Energy (kWh)
+- Frequency (Hz)
+- Power Factor
+
+---
+
+## 🔮 Future Improvements
+
+- MQTT Integration
+- Mobile App Dashboard
+- Blynk Support
+- Node-RED Visualization
+- Firebase Database
+- Energy Consumption Analytics
+- Fault Detection
+- Smart Scheduling
+
+---
+
+## 📖 Report
+
+A detailed project report is included in this repository.
 
 ```
-images/circuit_diagram.png
+IoT_Smart_Power_Strip_Report.pdf
 ```
 
 ---
 
-## Working Model
+## 👩‍💻 Author
 
-(Add your project demonstration image here)
+**Nivethitha R**
 
-```
-images/working_model.jpg
-```
+Electrical and Electronics Engineering
 
----
+Interested in:
 
-# Technologies Used
-
+- IoT
 - Embedded Systems
-- Internet of Things (IoT)
-- ESP32
-- Arduino Programming
-- Wi-Fi Networking
-- JSON Communication
-- Energy Monitoring
-- Relay Automation
+- Power Systems
+- Smart Grid Technologies
 
----
-
-# Future Improvements
-
-- Firebase Realtime Database Integration
-- Blynk Cloud Dashboard
-- Mobile Notifications
-- Energy Usage Analytics
-- OTA (Over-the-Air) Firmware Updates
-- MQTT Communication
-- Historical Data Logging
-
----
-
-# Project Status
-
-This repository contains a reconstructed implementation based on the original academic project report. The original Arduino source code was unavailable; therefore, the implementation has been recreated for educational and portfolio purposes. The software architecture reflects the project design and may require hardware-specific configuration and testing before deployment.
-
----
-
-# Author
-
-**Nivethitha**
-
-Bachelor of Engineering (Electrical and Electronics Engineering)
-
----
-
-# Acknowledgements
-
-- Arduino Community
-- Espressif Systems
-- PZEM004T Library Developers
-- Open-source IoT Community
