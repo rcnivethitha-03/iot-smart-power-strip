@@ -185,8 +185,6 @@ This repository contains a reconstructed implementation based on the original ac
 
 Bachelor of Engineering (Electrical and Electronics Engineering)
 
-GitHub: https://github.com/YOUR_USERNAME
-
 ---
 
 # Acknowledgements
