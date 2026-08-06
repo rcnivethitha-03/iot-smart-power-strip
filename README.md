@@ -31,28 +31,22 @@ The architecture is designed to be scalable and can easily integrate with cloud 
 
 ---
 
-# 🏗 System Architecture
+## Project Architecture
 
 ```
-          +----------------------+
-          |   Sensor Node ESP32  |
-          |----------------------|
-          |  PZEM-004T #1        |
-          |  PZEM-004T #2        |
-          +----------+-----------+
-                     |
-               Wi-Fi Communication
-                     |
-                     ▼
-          +----------------------+
-          |    Edge Node ESP32   |
-          |----------------------|
-          | Receives Sensor Data |
-          | Controls Relays       |
-          | Processes Readings    |
-          +----------+-----------+
-                     |
-                Smart Power Strip
+PZEM 1 ----\
+             \
+              --> Sensor Node (ESP32) ----HTTP/JSON----> Edge Node (ESP32)
+             /
+PZEM 2 ----/
+
+                          |
+                          |
+             -------------------------
+             |                       |
+         Relay Control          Firebase
+             |
+          Blynk Dashboard
 ```
 
 ---
